@@ -1,0 +1,147 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    color: #fff;
+}
+
+
+body {
+    background-color: #111B21;
+    height: 100vh;
+    padding: 20px;
+}
+
+main {
+    max-width: 600px;
+    border-radius: 4px;
+    border: 1px solid #202C33;
+    background-color: #161616;
+    padding: 30px 20px;
+    margin: auto;
+}
+
+h2 {
+    font-family: sans-serif;
+    text-align: center;
+    margin-bottom: 16px;
+    font-style: italic;
+}
+
+form {
+    width: 100%;
+    display: flex;
+    padding: 12px 0px;
+    border-bottom: 1px solid #30363D;
+    gap: 20px;
+    flex-direction: column;
+}
+
+form input {
+    border: 0;
+    outline: none;
+    font-size: 1.1em;
+    transition: all 250ms linear;
+}
+
+form input:first-child {
+    padding: 8px;
+    background-color: #202C33;
+    flex-grow: 1;
+}
+
+form input:last-child {
+    padding: 8px 16px;
+    background-color: #1dcf3e;
+    cursor: pointer;
+    flex-grow: 1;
+}
+
+form input:first-child:hover,
+form input:first-child:focus {
+    background-color: #1c2225;
+}
+
+form input:last-child:hover {
+    background-color: #2EA043;
+}
+
+@media (min-width: 500px) {
+    form {
+        flex-direction: row;
+    }
+
+    form input:last-child {
+        flex-grow: 0;
+    }
+}
+
+div.user-avatar {
+    text-align: center;
+    padding: 20px;
+}
+
+div.user-avatar img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    display: none;
+}
+
+p.bio {
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 24px;
+    font-style: italic;
+    color: #cecece;
+    display: none;
+}
+
+div.details-container {
+    display: flex;
+    flex-direction: column;
+}
+
+h3 {
+    font-size: 1.5em;
+}
+
+h3 a {
+    color: #0acee1;
+    text-decoration: none;
+}
+
+div.details-container div {
+    flex-grow: 1;
+    padding: 12px 0px;
+    display: flex;
+    justify-content: space-between;
+}
+
+@media (min-width: 400px) {
+    div.details-container {
+        flex-direction: row;
+    }
+
+    div.details-container div {
+        display: block;
+        text-align: center;
+
+    }
+
+    div.details-container div:not(:last-of-type) {
+        border-right: 1px solid #30363D;
+    }
+}
+
+h4 {
+    margin-bottom: 5px;
+    font-size: 1.1em;
+}
+
+div.details-container p {
+    font-size: 1.2em;
+}
+
+
