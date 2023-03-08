@@ -1,45 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>User Search</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <script src="main.js" defer></script>
-</head>
-<body>
+  </head>
+  <body>
     <main>
-        <h2>Find Github User</h2>
-        <form>
-            <input type="text" placeholder="GitHub Username" id="username">
-            <input type="submit" value="Search">
-        </form>
+      <h2>Find Github User</h2>
+      <form>
+        <input type="text" placeholder="GitHub Username" id="username" />
+        <input type="submit" value="Search" />
+      </form>
 
-        <!-- User Details -->
-        <div class="user-avatar">
-            <img src="" alt="User Avatar">
-            <h3><a title="Visit Profile" target="_blank"></a></h3>
+      <!-- User Details -->
+      <div class="user-avatar">
+        <img src="" alt="User Avatar" />
+        <h3><a title="Visit Profile" id="userlink" target="_blank"></a></h3>
+      </div>
+
+      <p class="bio"></p>
+
+      <div class="details-container">
+        <div>
+          <h4>Total Repos</h4>
+          <p id="reposCount">----</p>
         </div>
 
-        <p class="bio"></p>
-
-        <div class="details-container">
-            <div>
-                <h4>Total Repos</h4>
-                <p id="reposCount">0</p>
-            </div>
-
-            <div>
-                <h4>Followers</h4>
-                <p id="followers">0</p>
-            </div>
-
-            <div>
-                <h4>Joined At</h4>
-                <p id="joined">0</p>
-            </div>
+        <div>
+          <h4>Followers</h4>
+          <p id="followers">----</p>
         </div>
+
+        <div>
+          <h4>Joined At</h4>
+          <p id="joined">-----</p>
+        </div>
+      </div>
     </main>
-</body>
+  </body>
 </html>

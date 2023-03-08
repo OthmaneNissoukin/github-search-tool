@@ -1,57 +1,51 @@
+function userData(result) {
+  // Formatting Joined Date
+  let joinedAt = new Date(result["created_at"]);
+  let joinedFormat = `${joinedAt.getDate()}/${
+    joinedAt.getMonth() + 1
+  }/${joinedAt.getFullYear()}`;
 
-// DOM Elements
+  // Adding User Data To HTML Document
+  document.getElementById("userlink").innerText = result["login"];
+  document.getElementById("userlink").setAttribute("href", result["html_url"]);
+  document.querySelector(".user-avatar img").src = result["avatar_url"];
+  document.querySelector(".bio").innerText = result["bio"];
+  document.getElementById("reposCount").innerText = result["public_repos"];
+  document.getElementById("followers").innerText = result["followers"];
+  document.getElementById("joined").innerText = joinedFormat;
+}
 
-let myImage = document.querySelector(".user-avatar img")
-let myUsername = document.querySelector(".user-avatar h3 a")
-let myBio = document.querySelector(".bio")
-let myReposCount = document.getElementById("reposCount")
-let myFollowers = document.getElementById("followers")
-let joinedDate = document.getElementById("joined")
+function errorStyle() {
+  // Reset HTML User Data In Case Of Error
+  document.getElementById("userlink").innerText = "User Not Found!";
+  document.querySelector(".user-avatar img").src = "";
+  document.querySelector(".bio").innerText = "";
+  document.getElementById("reposCount").innerText = "----";
+  document.getElementById("followers").innerText = "----";
+  document.getElementById("joined").innerText = "-----";
+}
 
-// Onsubmit Form
+document.forms[0].onsubmit = function (e) {
+  e.preventDefault();
+  let username = document
+    .getElementById("username")
+    .value.trim()
+    .replaceAll(" ", "");
+  getData(username);
+};
 
-document.forms[0].onsubmit = function() {
-    let username = document.getElementById("username").value.replaceAll(" ", "")
+async function getData(username) {
+  try {
+    let url = `https://api.github.com/users/${username}`;
+    let response = await fetch(url);
+    let result = await response.json();
 
-    // Get Data
-    let myRequest = new XMLHttpRequest()
-
-    myRequest.open("GET", `https://api.github.com/users/${username}`, true)
-    myRequest.send()
-
-    myRequest.onreadystatechange = function() {
-    if(this.readyState == 4 && this.status == 200) {
-        let myData = JSON.parse(this.responseText)
-
-        myImage.setAttribute("src", myData["avatar_url"])
-        myImage.style.display = "inline-block"
-        myUsername.textContent = myData["login"]
-        myUsername.setAttribute("href", myData["html_url"])
-        myBio.textContent = myData["bio"]
-        myReposCount.textContent = myData["public_repos"]
-        myFollowers.textContent = myData["followers"]
-        
-        // Get Joined Date
-        let datetime = new Date(myData["created_at"])
-        let joinedAt = `${datetime.getDate()}-${datetime.getMonth()}-${datetime.getFullYear()}`
-        
-        joinedDate.textContent = joinedAt
-
-        myBio.textContent == "" ? myBio.style.display = "none" : myBio.style.display = "block"
-
-        
-    } else if (this.status == 404) {
-        myUsername.textContent = "User Not Found !!!"
-        myImage.style.display = "none"
-        myBio.style.display = "none"
-        myReposCount.textContent = "0"
-        myFollowers.textContent = "0"
-        joinedDate.textContent = "- - - -"
+    if (response["status"] >= 200 && response["status"] <= 299) {
+      userData(result);
+    } else {
+      throw new Error();
     }
-    
+  } catch (err) {
+    errorStyle();
+  }
 }
-
-    // Prevent Refreshing The Page When Clicking Enter
-    return false
-}
-

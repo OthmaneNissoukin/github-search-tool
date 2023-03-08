@@ -86,6 +86,9 @@ div.user-avatar img {
     height: 120px;
     border-radius: 50%;
     margin-bottom: 10px;
+}
+
+div.user-avatar img[src=""] {
     display: none;
 }
 
@@ -95,6 +98,9 @@ p.bio {
     margin-bottom: 24px;
     font-style: italic;
     color: #cecece;
+}
+
+p.bio:empty {
     display: none;
 }
 
